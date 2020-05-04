@@ -33,7 +33,30 @@
 // all but one of the values in A occur an even number of times.
 
 function solution(A) {
+    // search through the array once. incrementing a counter on the number of times
+    // an integer has been found. Then search for the the value of one in that new array
+    // or set
+    let occurrences = new Map();
 
+    A.forEach((item) => {
+        let val = 0;
+        if(occurrences.has(item)) {
+            val = occurrences.get(item) + 1;
+        } else {
+            val = 1;
+        }
+        occurrences.set(item, val);
+    })
+
+    let uniqueKey = 0;
+    for(const [key, value] of occurrences) {
+        if(value % 2 === 1) {
+            uniqueKey = key;
+            break;
+        }
+    }
+
+    return uniqueKey;
 }
 
-console.log(solution());
+console.log(solution([9, 3, 9, 3, 9, 7, 9, 7, 7]));
