@@ -67,6 +67,8 @@ function solution(X, A) {
     if(leafs.count < X) {
         return -1;
     } else {
+        // I need to make sure the contents of leafs contain 1...X of what is needed
+        // to make sure all the leafs are counted.
         return Math.max(...leafs);
     }
     // check that the count of leafs equals X
