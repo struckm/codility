@@ -54,4 +54,4 @@ function solution(N) {
     }
 }
 
-console.log(solution(9));
+console.log(solution(1041));
