@@ -45,6 +45,9 @@
 
 
 #region Odd Occurrences in Arrays
+//
+// https://app.codility.com/demo/results/trainingDFTXUQ-CC7/
+//
 // A non-empty array A consisting of N integers is given. The array contains an odd number of elements, 
 // and each element of the array can be paired with another element that has the same value, 
 // except for one element that is left unpaired.
@@ -90,9 +93,73 @@ namespace lesson2
         static void Main(string[] args)
         {
 
-            int[] A = { };
-            int K = 3;
-            var test = Solution1(A, K);
+            // int[] A = { };
+            // int K = 3;
+            // var test = Solution1(A, K);
+
+            int[] A = { 9, 3, 9, 3, 9, 7, 9 };
+            var result = Solution2(A);
+            Console.WriteLine(result);
+        }
+
+        public static int Solution2(int[] A) {
+
+
+            // The following solution is O(N^2)
+            // Need to make it 2N instead, which basically is loop through the collections
+            // twice.
+
+            // Try this with a Hashtable or Dictionary
+            Dictionary<int, int> occurrences = new Dictionary<int, int>();
+
+
+
+            foreach(int a in A) {
+                // Add A to a key, value collection like hashtable or Dictionary object
+                if(!occurrences.ContainsKey(a)) {
+                    occurrences[a] = 1;
+                } else {
+                    occurrences[a] = occurrences[a] + 1;
+                }
+            }
+
+
+
+            foreach(KeyValuePair<int, int> kv in occurrences) {
+                // Console.WriteLine(kv.Key + "\t" + kv.Value);
+                if(kv.Value % 2 != 0) {
+                    return kv.Key;
+                }   
+            }
+
+            return -1;
+
+            // var list = A.ToList();
+            // int result = 0;
+            // int index = 0;
+            // while(result > 0) {
+            //     var item = list[index];
+            //     var occurrences = list.Where(e => e == item).Count();
+            //     if(occurrences % 2 != 0) {
+            //         result = item;
+            //     }
+            //     index++;
+            // }
+            // return result;
+
+
+            // var list = A.ToList();
+            // int result = 0;
+            // int index = 0;
+            // while(result == 0) {
+            //     var item = list[index]; 
+            //     var occurrences = list.Where(e => e == item).Count();
+            //     if(occurrences % 2 != 0) {
+            //         result = item;
+            //     }
+            //     index++;
+            // }            
+            // return result;
         }
 
         public static int[] Solution1(int[] A, int K) {
